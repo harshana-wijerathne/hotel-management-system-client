@@ -1,0 +1,58 @@
+.sidebar {
+  height: 100vh;
+  width: 200px;
+  position: relative;
+  background-color: #0e0d0d;
+  transition: width 0.3s ease;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.nav-link {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 14px 16px;
+  color: white;
+
+  & :hover{
+    font-weight: bold;
+  }
+}
+
+.btn-toggle {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.logo{
+  height: 32px;
+  margin: 16px;
+  background:rgba(255, 255, 255,0.3);
+}
+
+.active-link{
+  color:yellow;
+}
+
+.main{
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9)),
+    url("./assets/bg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+/* .main{
+  background-image:
+    url("./assets/bg.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+} */
