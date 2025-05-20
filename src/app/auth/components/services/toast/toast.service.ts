@@ -7,12 +7,12 @@ import { Toast } from 'bootstrap';
 export class ToastService {
   show(
     message: string,
-    type: 'success' | 'error' | 'info' = 'success',
+    type: 'success' | 'error' | 'info',
     timeout: number = 3000 // default to 5 seconds
   ) {
     const toastContainer = document.getElementById('toast-container');
     const toastElement = document.createElement('div');
-    toastElement.className = `toast align-items-center text-white bg-${type==="error"?"danger":""} border-0`;
+    toastElement.className = `toast align-items-center text-white bg-${type==="error"?"danger":type} border-0`;
     toastElement.setAttribute('role', 'alert');
     toastElement.setAttribute('aria-live', 'assertive');
     toastElement.setAttribute('aria-atomic', 'true');

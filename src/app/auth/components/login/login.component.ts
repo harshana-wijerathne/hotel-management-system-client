@@ -79,7 +79,6 @@ import { NonNullAssert } from '@angular/compiler';
         <button
           type="button"
           class="btn btn-primary my-2"
-          hidden
           (click)="setAdmin()"
         >
           Guest Admin

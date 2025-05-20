@@ -53,7 +53,7 @@ import { UserStorageService } from './auth/components/services/storage/user-stor
         <button class="btn btn-toggle text-white" (click)="toggleCollapse()">
           {{ isCollapsed ? '>' : '<' }}
         </button>
-      </div>
+      </div>  <!--Login/Register-->
 
       <!-- -------------------------------------------------------------------------------------------- -->
 
@@ -64,6 +64,17 @@ import { UserStorageService } from './auth/components/services/storage/user-stor
       >
         <div class="logo"></div>
         <ul class="nav flex-column">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              routerLink="/admin/room"
+              routerLinkActive="active-link"
+            >
+              <i class="bi-person">
+                <span class="ps-3" *ngIf="!isCollapsed">Post Room</span></i
+              >
+            </a>
+          </li>
           <li class="nav-item">
             <a
               class="nav-link"
@@ -97,7 +108,7 @@ import { UserStorageService } from './auth/components/services/storage/user-stor
         <button class="btn btn-toggle text-white" (click)="toggleCollapse()">
           {{ isCollapsed ? '>' : '<' }}
         </button>
-      </div>
+      </div> <!--Admin-->
 
       <!-- ---------------------------------------------------------------------------------------------------------- -->
       <div
@@ -140,7 +151,7 @@ import { UserStorageService } from './auth/components/services/storage/user-stor
         <button class="btn btn-toggle text-white" (click)="toggleCollapse()">
           {{ isCollapsed ? '>' : '<' }}
         </button>
-      </div>
+      </div> <!--Customer-->
 
       <!-- ---------------------------------------------------------------------------------------------------------- -->
       <div
