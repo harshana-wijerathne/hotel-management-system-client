@@ -1,0 +1,44 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding:50px;
+  box-sizing: border-box;
+  background-color: rgba(245, 222, 179, 0.44);
+}
+
+.card-img{
+  background-image:linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkAs_AJZBgBpzgZtbBTBuJCvhGjtGJ6DqgybQxzZOAwN93DpWNnX8NUJ6S0CeGh-UOItc&usqp=CAU");
+}
+
+.card{
+  box-shadow: 1px 1px 2px 2px;
+  &:hover{
+
+    transform: scale(1.02);
+    transition-duration: 0.2s;
+    transition-property: transform;
+
+    i{
+      color:black;
+      transition-duration: 0.2s;
+      transition-property: color;
+    }
+  }
+
+
+}
+
+.bi-pen-fill{
+  color:transparent;
+  &:hover{
+    color:blue !important;
+  }
+}
+.bi-trash-fill{
+  color:transparent;
+  &:hover{
+    color:red !important;
+  }
+}
+

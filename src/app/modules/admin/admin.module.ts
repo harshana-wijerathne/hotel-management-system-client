@@ -6,13 +6,15 @@ import { AdminComponent } from './admin.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PostRoomComponent } from './components/post-room/post-room.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { UpdateRoomComponent } from './components/update-room/update-room.component';
 
 
 @NgModule({
   declarations: [
     AdminComponent,
     DashboardComponent,
-    PostRoomComponent
+    PostRoomComponent,
+    UpdateRoomComponent
   ],
     imports: [
         CommonModule,

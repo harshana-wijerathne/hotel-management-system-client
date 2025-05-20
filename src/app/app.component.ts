@@ -78,7 +78,7 @@ import { UserStorageService } from './auth/components/services/storage/user-stor
           <li class="nav-item">
             <a
               class="nav-link"
-              routerLink="/admin/rooms"
+              routerLink="/admin/dashboard"
               routerLinkActive="active-link"
             >
               <i class="bi-person">
@@ -157,8 +157,9 @@ import { UserStorageService } from './auth/components/services/storage/user-stor
       <div
         class="content vh-100 text-white d-flex justify-content-center align-items-center w-100"
       >
-        <router-outlet />
+        <router-outlet/>
       </div>
+
     </div>
   `,
   standalone: false,
