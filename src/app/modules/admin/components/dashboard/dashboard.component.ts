@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { AdminService } from '../../admin.service';
 import { ToastService } from '../../../../auth/components/services/toast/toast.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,8 +17,8 @@ import { ToastService } from '../../../../auth/components/services/toast/toast.s
             <div class="card-img border py-5">Some quick example text to build on the card title and make up the bulk of the card's content.</div>
             <div class="mt-2 d-flex justify-content-between">
               <h5 href="#" class="card-link d-inline">{{room.price}} USD</h5>
-              <i href="#" title="Edit" class="bi bi-pen-fill ms-5" routerLink ="/admin/room/{{room.id}}/edit"></i>
-              <i href="#" title="Delete" class="bi bi-trash-fill ms-5" ></i>
+              <i title="Edit" class="bi bi-pen-fill ms-5" routerLink ="/admin/room/{{room.id}}/edit"></i>
+              <i title="Delete" class="bi bi-trash-fill ms-5"  (click)="deleteRoom(room.id)" ></i>
             </div>
 
           </div>
@@ -44,17 +45,23 @@ import { ToastService } from '../../../../auth/components/services/toast/toast.s
   `,
   styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   currentPage = 1;
   rooms: any[] = [];
   total = 0;
   visiblePages: number[] = [];
+  id:number;
 
   constructor(
     private adminService: AdminService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private activatedRoute: ActivatedRoute,
   ) {
     this.getRooms();
+  }
+
+  ngOnInit() {
+    this.id = this.activatedRoute.snapshot.params['id'];
   }
 
   getRooms() {
@@ -88,5 +95,18 @@ export class DashboardComponent {
     for (let i = startPage; i <= endPage; i++) {
       this.visiblePages.push(i);
     }
+  }
+
+  deleteRoom(id:number) {
+   var b = confirm("Are you sure you want to delete this room?");
+   if (b) {
+     this.adminService.deleteRoom(id).subscribe(res => {
+       this.toastService.show("Room Deleted Successfully",'success');
+       this.getRooms();
+     },error => {
+       this.toastService.show("Something went wrong!",'error');
+     })
+   }
+
   }
 }
