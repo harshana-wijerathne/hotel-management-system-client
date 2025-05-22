@@ -19,6 +19,14 @@ export class CustomerService {
     })
   }
 
+  bookRoom(bookingDto: any): Observable<any> {
+    return this.http.post(BASIC_URL + "api/customer/book", bookingDto,{
+      headers: this.createAuthorizationHeader()
+    })
+  }
+
+
+
   private createAuthorizationHeader() {
     let authHeaders = new HttpHeaders()
     return authHeaders.set(
