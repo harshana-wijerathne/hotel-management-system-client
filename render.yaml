@@ -1,0 +1,9 @@
+services:
+  - type: static
+    name: angular-client-app
+    env: static
+    buildCommand: pnpm install && pnpm run build
+    staticPublishPath: dist/client
+    envVars:
+      - key: NODE_VERSION
+        value: 18
