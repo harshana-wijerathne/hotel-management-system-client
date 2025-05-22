@@ -42,6 +42,12 @@ export class AdminService {
     })
   }
 
+  getReservations(pageNumber:number):Observable<any> {
+    return this.http.get(BASIC_URL+"api/admin/reservation/"+pageNumber,{
+      headers:this.createAuthorizationHeader(),
+    })
+  }
+
 
 
   private createAuthorizationHeader() {
