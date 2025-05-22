@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import { ToastService } from '../../../../auth/components/services/toast/toast.service';
-import {AdminService} from '../../admin.service';
+import {AdminService} from '../../service/admin.service';
 
 @Component({
   selector: 'app-post-room',

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { AdminService } from '../../admin.service';
+import { AdminService } from '../../service/admin.service';
 import { ToastService } from '../../../../auth/components/services/toast/toast.service';
 import {ActivatedRoute} from '@angular/router';
 
@@ -22,10 +22,12 @@ import {ActivatedRoute} from '@angular/router';
             </div>
 
           </div>
+
         </div>
       }
+
     </div>
-    <nav class="pt-5" aria-label="...">
+    <nav class="pt-5 bottom-50 end-0" aria-label="...">
       <ul class="pagination">
         <li class="page-item" [class.disabled]="currentPage === 1">
           <a class="page-link" (click)="goToPage(currentPage - 1)">Previous</a>
@@ -42,6 +44,7 @@ import {ActivatedRoute} from '@angular/router';
         </li>
       </ul>
     </nav>
+
   `,
   styleUrl: './dashboard.component.css'
 })
