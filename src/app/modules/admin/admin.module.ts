@@ -7,6 +7,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { PostRoomComponent } from './components/post-room/post-room.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { UpdateRoomComponent } from './components/update-room/update-room.component';
+import { ReservationsComponent } from './components/reservations/reservations.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { UpdateRoomComponent } from './components/update-room/update-room.compon
     AdminComponent,
     DashboardComponent,
     PostRoomComponent,
-    UpdateRoomComponent
+    UpdateRoomComponent,
+    ReservationsComponent
   ],
     imports: [
         CommonModule,

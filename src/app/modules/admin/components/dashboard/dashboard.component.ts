@@ -8,7 +8,7 @@ import {ActivatedRoute} from '@angular/router';
   standalone: false,
   template: `
     <button class="btn btn-primary mb-5" routerLink="/admin/room">Post Room</button>
-    <div class="room-container d-flex gap-5 flex-wrap overflow-y-auto border justify-content-center" style="max-height: 700px; min-height: 700px; box-shadow:1px 1px 5px 4px black">
+    <div class="room-container d-flex gap-5 flex-wrap overflow-y-auto border justify-content-center position-relative" style="max-height: 700px; min-height: 700px; box-shadow:1px 1px 5px 4px black">
       @for (room of rooms; track room.name) {
         <div class="card" style="width: 18rem; height: 18rem">
           <div class="card-body">
@@ -20,30 +20,29 @@ import {ActivatedRoute} from '@angular/router';
               <i title="Edit" class="bi bi-pen-fill ms-5" routerLink ="/admin/room/{{room.id}}/edit"></i>
               <i title="Delete" class="bi bi-trash-fill ms-5"  (click)="deleteRoom(room.id)" ></i>
             </div>
-
           </div>
-
         </div>
       }
 
-    </div>
-    <nav class="pt-5 bottom-50 end-0" aria-label="...">
-      <ul class="pagination">
-        <li class="page-item" [class.disabled]="currentPage === 1">
-          <a class="page-link" (click)="goToPage(currentPage - 1)">Previous</a>
-        </li>
-
-        @for (page of visiblePages; track page) {
-          <li class="page-item" [class.active]="page === currentPage">
-            <a class="page-link" (click)="goToPage(page)">{{page}}</a>
+      <div class="pt-5 bottom-0 end-0 position-absolute" aria-label="...">
+        <ul class="pagination">
+          <li class="page-item" [class.disabled]="currentPage === 1">
+            <a class="page-link" (click)="goToPage(currentPage - 1)">Previous</a>
           </li>
-        }
 
-        <li class="page-item" [class.disabled]="currentPage === total">
-          <a class="page-link" (click)="goToPage(currentPage + 1)">Next</a>
-        </li>
-      </ul>
-    </nav>
+          @for (page of visiblePages; track page) {
+            <li class="page-item" [class.active]="page === currentPage">
+              <a class="page-link" (click)="goToPage(page)">{{page}}</a>
+            </li>
+          }
+
+          <li class="page-item" [class.disabled]="currentPage === total">
+            <a class="page-link" (click)="goToPage(currentPage + 1)">Next</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
 
   `,
   styleUrl: './dashboard.component.css'

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AdminService} from '../../service/admin.service';
 import {ToastService} from '../../../../auth/components/services/toast/toast.service';
 
@@ -25,13 +25,32 @@ import {ToastService} from '../../../../auth/components/services/toast/toast.ser
         @for(reservation of reservations; track reservations.id){
             <tr>
               <td>{{reservation.roomName}}</td>
-              <td>{{reservation.type}}</td>
+              <td>{{reservation.roomType}}</td>
               <td>{{reservation.checkInDate}}</td>
               <td>{{reservation.checkOutDate}}</td>
               <td>{{reservation.price}}</td>
               <td>{{reservation.userName}}</td>
-              <td>{{reservation.status}}</td>
-              <td>Action</td>
+              <td>
+                <div class="d-flex align-items-center bg-info py-1 px-2 rounded-1" *ngIf="reservation.status === 'PENDING'">
+                  <div class="loader"></div>
+                  <div class="ps-2">Pending</div>
+                </div>
+                <div class="d-flex bg-success py-1 px-2 rounded-1" *ngIf="reservation.status === 'APPROVED'">
+                  <i class="bi bi-check-circle-fill text-white pe-2"></i>
+                  <div>Approved</div>
+                </div>
+                <div class="d-flex bg-danger  py-1 px-2 rounded-1" *ngIf="reservation.status === 'REJECTED'">
+                  <i class="bi bi-x-circle-fill text-white pe-2"></i>
+                  <div>Rejected</div>
+                </div>
+
+              </td>
+              <td>
+                <div *ngIf="reservation.status === 'PENDING'">
+                  <i class="bi bi-check-circle-fill text-success pe-2" (click)="changeReservationStatus(reservation.id,'Approve')"></i>
+                  <i class="bi bi-x-circle-fill text-danger pe-2" (click)="changeReservationStatus(reservation.id,'Reject')"></i>
+                </div>
+              </td>
             </tr>
         }
         </tbody>
@@ -58,7 +77,7 @@ import {ToastService} from '../../../../auth/components/services/toast/toast.ser
   `,
   styleUrl: './reservations.component.css'
 })
-export class ReservationsComponent {
+export class ReservationsComponent implements OnInit {
 
   currentPage:any = 1;
   total:any;
@@ -92,17 +111,10 @@ export class ReservationsComponent {
     this.id = this.activatedRoute.snapshot.params['id'];
   }
 
-  getRooms() {
-    this.adminService.getRooms(this.currentPage - 1).subscribe(res => {
-      this.total = res.totalPages * 1;
-      this.updateVisiblePages();
-    });
-  }
-
   goToPage(page: number) {
     if (page >= 1 && page <= this.total && page !== this.currentPage) {
       this.currentPage = page;
-      this.getRooms();
+      this.getReservations();
       this.updateVisiblePages();
     }
   }
@@ -122,6 +134,16 @@ export class ReservationsComponent {
     for (let i = startPage; i <= endPage; i++) {
       this.visiblePages.push(i);
     }
+  }
+
+  changeReservationStatus(id:number,status:string){
+      this.adminService.changeReservationStatus(id,status).subscribe(res=>{
+        this.toastService.show("Reservation Status Changed Successfully",'success');
+        this.getReservations();
+      },error=>{
+        this.toastService.show("Something went wrong!",'error');
+      })
+
   }
 
 
