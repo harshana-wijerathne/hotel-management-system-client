@@ -136,8 +136,7 @@ import { UserStorageService } from './auth/components/services/storage/user-stor
               routerLinkActive="active-link"
             >
               <i class="bi-power">
-                <span class="ps-3" *ngIf="!isCollapsed">Bookings</span></i
-              >
+                <span class="ps-3" *ngIf="!isCollapsed">Bookings</span></i>
             </a>
           </li>
           <li class="nav-item">
